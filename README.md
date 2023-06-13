@@ -1,6 +1,6 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/danieletulone/toolkit.svg?style=flat-square)](https://packagist.org/packages/danieletulone/laravel-toolkit)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/danieletulone/laravel-toolkit.svg?style=flat-square)](https://packagist.org/packages/danieletulone/laravel-toolkit)
 [![Total Downloads](https://img.shields.io/packagist/dt/danieletulone/laravel-toolkit.svg?style=flat-square)](https://packagist.org/packages/danieletulone/laravel-toolkit)
 ![GitHub Actions](https://github.com/danieletulone/laravel-toolkit/actions/workflows/main.yml/badge.svg)
 
