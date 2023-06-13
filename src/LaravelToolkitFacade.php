@@ -1,13 +1,13 @@
 <?php
 
-namespace Danieletulone\Toolkit;
+namespace Danieletulone\LaravelToolkit;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Danieletulone\Toolkit\Skeleton\SkeletonClass
+ * @see \Danieletulone\LaravelToolkit\Skeleton\SkeletonClass
  */
-class ToolkitFacade extends Facade
+class LaravelToolkitFacade extends Facade
 {
     /**
      * Get the registered name of the component.

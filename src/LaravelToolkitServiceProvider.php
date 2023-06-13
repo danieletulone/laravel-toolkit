@@ -1,10 +1,10 @@
 <?php
 
-namespace Danieletulone\Toolkit;
+namespace Danieletulone\LaravelToolkit;
 
 use Illuminate\Support\ServiceProvider;
 
-class ToolkitServiceProvider extends ServiceProvider
+class LaravelToolkitServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -54,7 +54,7 @@ class ToolkitServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton('toolkit', function () {
-            return new Toolkit;
+            return new LaravelToolkit;
         });
     }
 }

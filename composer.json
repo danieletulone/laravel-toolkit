@@ -1,11 +1,11 @@
 {
-    "name": "danieletulone/toolkit",
+    "name": "danieletulone/laravel-toolkit",
     "description": "This package provides some classes, utilities, views, controller for build easier laravel application.",
     "keywords": [
         "danieletulone",
         "toolkit"
     ],
-    "homepage": "https://github.com/danieletulone/toolkit",
+    "homepage": "https://github.com/danieletulone/laravel-toolkit",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Danieletulone\\Toolkit\\": "src"
+            "Danieletulone\\LaravelToolkit\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Danieletulone\\Toolkit\\Tests\\": "tests"
+            "Danieletulone\\LaravelToolkit\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +44,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Danieletulone\\Toolkit\\ToolkitServiceProvider"
+                "Danieletulone\\LaravelToolkit\\LaravelToolkitServiceProvider"
             ],
             "aliases": {
-                "Toolkit": "Danieletulone\\Toolkit\\ToolkitFacade"
+                "LaravelToolkit": "Danieletulone\\LaravelToolkit\\LaravelToolkitFacade"
             }
         }
     }
