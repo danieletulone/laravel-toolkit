@@ -21,7 +21,7 @@ class LaravelToolkitServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('toolkit.php'),
+                __DIR__ . '/../config/config.php' => config_path('laravel-toolkit.php'),
             ], 'config');
 
             // Publishing the views.
@@ -50,10 +50,10 @@ class LaravelToolkitServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'toolkit');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'laravel-toolkit');
 
         // Register the main class to use with the facade
-        $this->app->singleton('toolkit', function () {
+        $this->app->singleton('laravel-toolkit', function () {
             return new LaravelToolkit;
         });
     }
