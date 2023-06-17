@@ -5,7 +5,7 @@ namespace Danieletulone\LaravelToolkit\Tests\Feature\Traits\Enum;
 use Danieletulone\LaravelToolkit\Tests\TestCase;
 use Danieletulone\LaravelToolkit\Traits\Enum\LabelableEnum;
 
-enum ExampleEnum:int
+enum ExampleEnum: int
 {
     use LabelableEnum;
 
@@ -19,7 +19,7 @@ class LabelableEnumTest extends TestCase
     public function testToLabel()
     {
         $this->assertEquals(
-            'enum.'.ExampleEnum::class. '.0',
+            'enum.' . ExampleEnum::class . '.first',
             ExampleEnum::FIRST->toLabel()
         );
     }
@@ -30,7 +30,7 @@ class LabelableEnumTest extends TestCase
             'first',
             ExampleEnum::FIRST->toKey()
         );
-        
+
         $this->assertEquals(
             'with_space',
             ExampleEnum::WITH_SPACE->toKey()
