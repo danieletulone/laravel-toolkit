@@ -47,7 +47,7 @@ trait LabelableEnum
      */
     public function toLabel($locale = null): string
     {
-        return __('enum.'.self::class.'.'.$this->value, [], $locale);
+        return __('enum.' . self::class . '.' . $this->toKey(), [], $locale);
     }
 
     public function toKey()
