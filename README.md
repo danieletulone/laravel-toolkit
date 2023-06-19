@@ -16,25 +16,11 @@ composer require danieletulone/laravel-toolkit
 
 ## Usage
 
-### Disable Primary Key
+Each class, function, command is built to be used individually and fit each laravel project.
 
-Useful for disable the primary key requirement. This is useful for when you want to migrate tables in a db service the Digital Ocean's one.
-
-Register the DisablePrimaryKeyRequirement listener for MigrationStarted event in App\Providers\EventServiceProvider:
-
-1. Add the use:
-
-```php
-use App\Listeners\DisablePrimaryKeyRequirement;
-use Illuminate\Database\Events\MigrationStarted;
-```
-
-2. Add this lines in $listen array:
-```php
-MigrationStarted::class => [
-    DisablePrimaryKeyRequirement::class,
-]
-```
+There is currently no dedicated documentation for each feature.
+To understand each feature It is recommended to explore and read the code.
+The file structure and names are very intuitive and the code is documented.
 
 ### Testing
 
@@ -56,8 +42,8 @@ If you discover any security related issues, please email danieletulone.work@gma
 
 ## Credits
 
--   [Daniele Tulone](https://github.com/danieletulone)
--   [All Contributors](../../contributors)
+- [Daniele Tulone](https://github.com/danieletulone)
+- [All Contributors](../../contributors)
 
 ## License
 
