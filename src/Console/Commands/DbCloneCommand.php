@@ -19,11 +19,12 @@ class DbCloneCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create a {$table}_backup table and copy all data from {$table} to {$table}_backup. If --delete option is passed, it will delete the backup table.';
 
     /**
      * Execute the console command.
      *
+     * TODO add check for table existence
      * @return int
      */
     public function handle()
