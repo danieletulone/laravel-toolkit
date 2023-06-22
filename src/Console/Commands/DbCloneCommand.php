@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Danieletulone\LaravelToolkit\Console\Commands;
 
 use App\Classes\TableCloner;
 use Illuminate\Console\Command;

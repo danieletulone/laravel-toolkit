@@ -24,23 +24,10 @@ class LaravelToolkitServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/config.php' => config_path('laravel-toolkit.php'),
             ], 'config');
 
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/toolkit'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/toolkit'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/toolkit'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                \Danieletulone\LaravelToolkit\Console\Commands\DbTranslatableCommand::class,
+                \Danieletulone\LaravelToolkit\Console\Commands\DbCloneCommand::class,
+            ]);
         }
     }
 
