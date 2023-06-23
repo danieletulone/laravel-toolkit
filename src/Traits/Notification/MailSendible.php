@@ -4,11 +4,10 @@ namespace Danieletulone\LaravelToolkit\Traits\Notification;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\View;
-use Danieletulone\LaravelToolkit\Traits\Notification\DotNameDedectible;
 
 trait MailSendible
 {
-    use DotNameDeductible;
+    use DotNameDeductible, HasTranslations;
 
     public static function mailChannel()
     {
