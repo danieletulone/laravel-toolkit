@@ -14,6 +14,9 @@ trait FcmSendible
 {
     use DotNameDeductible, HasTranslations;
 
+    /**
+     * Get the notification's delivery channels.
+     */
     public static function fcmChannel()
     {
         return FcmChannel::class;
@@ -27,6 +30,9 @@ trait FcmSendible
         return true;
     }
 
+    /**
+     * Get the FCM representation of the notification.
+     */
     public function toFcm($notifiable)
     {
         return FcmMessage::create()
@@ -37,6 +43,7 @@ trait FcmSendible
             ->setApns($this->fcmApnsConfig());
     }
 
+
     public function fcmNotification($notifiable)
     {
         return Notification::create()
@@ -44,12 +51,22 @@ trait FcmSendible
             ->setBody($this->fcmBody($notifiable));
     }
 
+    /**
+     * Get the Android representation of the notification.
+     *
+     * @return AndroidConfig 
+     */
     public function fcmAndroidConfig()
     {
         return AndroidConfig::create()
             ->setNotification(AndroidNotification::create());
     }
 
+    /**
+     * Get the APNs representation of the notification.
+     *
+     * @return ApnsConfig 
+     */
     public function fcmApnsConfig()
     {
         return ApnsConfig::create();
