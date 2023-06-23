@@ -93,7 +93,7 @@ trait FcmSendible
     public function fcmTitle($notifiable): string
     {
         return __(
-            $this->getTranslationKeyFor('title'),
+            $this->getTranslationKeyFor('title', 'fcm'),
             $this->getTranslationReplace($notifiable),
             $this->getTranslationLocale($notifiable)
         );
@@ -106,7 +106,7 @@ trait FcmSendible
     public function fcmBody($notifiable): string
     {
         return __(
-            $this->getTranslationKeyFor('body'),
+            $this->getTranslationKeyFor('body', 'fcm'),
             $this->getTranslationReplace($notifiable),
             $this->getTranslationLocale($notifiable)
         );
