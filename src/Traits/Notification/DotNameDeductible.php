@@ -19,7 +19,7 @@ trait DotNameDeductible
      * Get the notification class name as dot name.
      * Ex:
      *  - App\Notifications\MyExampleNotification -> my-example
-     *  - App\Notifications\System\MyExampleNotification -> system.my-example
+     *  - App\Notifications\System\MyExampleNotification -> system.my_example
      */
     public static function getDotName(): string
     {
