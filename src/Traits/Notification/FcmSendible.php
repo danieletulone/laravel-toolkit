@@ -2,6 +2,7 @@
 
 namespace Danieletulone\LaravelToolkit\Traits\Notification;
 
+use Danieletulone\LaravelToolkit\Notifications\Channels\FcmChannel;
 use DanieleTulone\LaravelToolkit\Traits\Notification\HasTranslations;
 use NotificationChannels\Fcm\Resources\AndroidConfig;
 use NotificationChannels\Fcm\FcmMessage;
