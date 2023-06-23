@@ -8,5 +8,6 @@ return [
     'notification' => [
         'notifiable_model' => env('LARAVEL_TOOLKIT_NOTIFICATION_USER_MODEL', 'App\Models\User'),
         'use_prefix' => env('LARAVEL_TOOLKIT_NOTIFICATION_USE_PREFIX', true),
+        'notifiable_lang_field' => env('LARAVEL_TOOLKIT_NOTIFICATION_USER_LANG_FIELD', 'lang'),
     ],
 ];
