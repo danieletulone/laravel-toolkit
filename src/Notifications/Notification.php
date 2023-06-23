@@ -2,13 +2,14 @@
 
 namespace Danieletulone\LaravelToolkit\Notifications;
 
+use Danieletulone\LaravelToolkit\Traits\Notification\HasTranslations;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification as BaseNotification;
 use Illuminate\Support\Str;
 
 class Notification extends BaseNotification
 {
-    use Queueable;
+    use HasTranslations, Queueable;
 
     /**
      * Get dynamically "via" from trait used.
