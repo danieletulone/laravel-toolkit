@@ -2,10 +2,8 @@
 
 namespace Danieletulone\LaravelToolkit\Notifications;
 
-use App\Traits\Notification\MailSendible;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification as BaseNotification;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class Notification extends BaseNotification
@@ -50,7 +48,7 @@ class Notification extends BaseNotification
      */
     private function shouldBeSentVia($via, $notifiable): bool
     {
-        return $this->{'shouldBeSentVia' . $viaNameFromTrait}($notifiable);
+        return $this->{'shouldBeSentVia' . $via}($notifiable);
     }
 
     /**
