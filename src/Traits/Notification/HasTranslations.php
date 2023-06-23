@@ -1,6 +1,6 @@
 <?php
 
-namespace DanieleTulone\LaravelToolkit\Traits\Notification;
+namespace Danieletulone\LaravelToolkit\Traits\Notification;
 
 use Danieletulone\LaravelToolkit\Traits\Notification\DotNameDeductible;
 
