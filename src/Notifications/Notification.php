@@ -10,7 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Notification extends BaseNotification implements ShouldQueue
 {
-    use HasTranslations, Queueable;
+    use HasTranslations,
+        Queueable;
 
     /**
      * Get dynamically "via" from trait used.
@@ -24,7 +25,7 @@ class Notification extends BaseNotification implements ShouldQueue
             $viaNameFromTrait = $this->getViaNameFromTrait($trait);
 
             if ($this->shouldBeSentVia($viaNameFromTrait, $notifiable)) {
-                $via[] = $viaNameFromTrait;
+                $via[] = $this->{$viaNameFromTrait . 'Channel'}();
             }
         }
 
