@@ -6,8 +6,9 @@ use Danieletulone\LaravelToolkit\Traits\Notification\HasTranslations;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification as BaseNotification;
 use Illuminate\Support\Str;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Notification extends BaseNotification
+class Notification extends BaseNotification implements ShouldQueue
 {
     use HasTranslations, Queueable;
 
