@@ -3,58 +3,56 @@
 namespace Danieletulone\LaravelToolkit\Notifications\Channels;
 
 use Illuminate\Notifications\Notification;
-use Kreait\Firebase\Exception\MessagingException;
-use Kreait\Firebase\Messaging\CloudMessage;
-use Kreait\Firebase\Messaging\Message;
-use NotificationChannels\Fcm\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Fcm\FcmChannel as BaseFcmChannel;
+use Google\Client;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
-class FcmChannel extends BaseFcmChannel
+class FcmChannel
 {
-    public function send($notifiable, Notification $notification)
+    public function createClient(): GuzzleHttpClient
     {
-        $token = $notifiable->routeNotificationFor('fcm', $notification);
+        $client = new Client();
 
-        if (empty($token)) {
-            return [];
-        }
+        // provide the JSON authentication file from storage.
+        $client->setAuthConfig(config('laravel-toolkit.notification.firebase.credentials'));
 
-        // Get the message from the notification class
-        $fcmMessage = $notification->toFcm($notifiable);
+        // Add the scope as a string (multiple scopes can be provided as an array)
+        $client->addScope('https://www.googleapis.com/auth/firebase.messaging');
 
-        if (!$fcmMessage instanceof Message) {
-            throw CouldNotSendNotification::invalidMessage();
-        }
-
-        $this->fcmProject = null;
-        if (method_exists($notification, 'fcmProject')) {
-            $this->fcmProject = $notification->fcmProject($notifiable, $fcmMessage);
-        }
-
-        $responses = [];
-
-        try {
-            $responses[] = $this->sendToFcm($fcmMessage, $token);
-        } catch (MessagingException $exception) {
-            $this->failedNotification($notifiable, $notification, $exception, $token);
-            throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
-        }
-
-        return $responses;
+        // Returns an instance of GuzzleHttp\Client that authenticates with the Google API.
+        return $client->authorize();
     }
 
     /**
-     * @return array
+     * Send a notification to a topic.
      *
-     * @throws \Kreait\Firebase\Exception\MessagingException
-     * @throws \Kreait\Firebase\Exception\FirebaseException
+     * @param string $topic
+     * @param string $title
+     * @param string $body
+     * @param array $data
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function sendToFcm(Message $fcmMessage, $token)
+    public function send($notifiable, Notification $notification)
     {
-        if ($fcmMessage instanceof CloudMessage) {
-            $fcmMessage = $fcmMessage->withChangedTarget('token', $token);
-        }
+        $payload = $notification->toFcm($notifiable);
 
-        return $this->messaging()->send($fcmMessage);
+        $client = $this->createClient();
+
+        $project = $this->getProjectFromCredetials();
+
+        $response = $client->post(
+            "https://fcm.googleapis.com/v1/projects/{$project}/messages:send",
+            ['json' => $payload]
+        );
+
+        return $response;
+    }
+
+    public function getProjectFromCredetials(): string
+    {
+        $credentials = json_decode(file_get_contents(
+            config('laravel-toolkit.notification.firebase.credentials')
+        ), true);
+
+        return $credentials['project_id'];
     }
 }
