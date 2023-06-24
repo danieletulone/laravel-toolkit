@@ -17,8 +17,9 @@
   ],
   "require": {
     "php": "^8.1",
+    "google/apiclient": "^2.15",
+    "guzzlehttp/guzzle": "^7.7",
     "illuminate/support": "^9.0",
-    "laravel-notification-channels/fcm": "^3.2",
     "spatie/laravel-translatable": "^6.5"
   },
   "require-dev": {
