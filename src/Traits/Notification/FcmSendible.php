@@ -4,11 +4,6 @@ namespace Danieletulone\LaravelToolkit\Traits\Notification;
 
 use Danieletulone\LaravelToolkit\Notifications\Channels\FcmChannel;
 use DanieleTulone\LaravelToolkit\Traits\Notification\HasTranslations;
-use NotificationChannels\Fcm\Resources\AndroidConfig;
-use NotificationChannels\Fcm\FcmMessage;
-use NotificationChannels\Fcm\Resources\AndroidNotification;
-use NotificationChannels\Fcm\Resources\ApnsConfig;
-use NotificationChannels\Fcm\Resources\Notification;
 
 trait FcmSendible
 {
@@ -35,41 +30,42 @@ trait FcmSendible
      */
     public function toFcm($notifiable)
     {
-        return FcmMessage::create()
-            ->setData($this->fcmData())
-            ->setTopic($this->fcmTopic($notifiable))
-            ->setNotification($this->fcmNotification($notifiable))
-            ->setAndroid($this->fcmAndroidConfig())
-            ->setApns($this->fcmApnsConfig());
+        return [
+            "message" => [
+                "topic" => $this->fcmTopic($notifiable),
+                "notification" => $this->fcmNotification($notifiable),
+                "apns" => [
+                    "payload" => [
+                        "aps" => [
+                            "badge" => 1,
+                        ],
+                    ],
+                ],
+                "data" => $this->fcmData($notifiable),
+            ],
+        ];
     }
-
 
     public function fcmNotification($notifiable)
     {
-        return Notification::create()
-            ->setTitle($this->fcmTitle($notifiable))
-            ->setBody($this->fcmBody($notifiable));
-    }
-
-    /**
-     * Get the Android representation of the notification.
-     *
-     * @return AndroidConfig 
-     */
-    public function fcmAndroidConfig()
-    {
-        return AndroidConfig::create()
-            ->setNotification(AndroidNotification::create());
+        return [
+            "body" => $this->fcmBody($notifiable),
+            "title" => $this->fcmTitle($notifiable),
+        ];
     }
 
     /**
      * Get the APNs representation of the notification.
-     *
-     * @return ApnsConfig 
      */
     public function fcmApnsConfig()
     {
-        return ApnsConfig::create();
+        return [
+            "payload" => [
+                "aps" => [
+                    "badge" => 1,
+                ],
+            ],
+        ];
     }
 
     /**
