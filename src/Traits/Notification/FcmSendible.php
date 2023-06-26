@@ -30,7 +30,9 @@ trait FcmSendible
      */
     public function toFcm($notifiable)
     {
-        return [
+        $data = $this->fcmData();
+
+        $message = [
             "message" => [
                 "topic" => $this->fcmTopic($notifiable),
                 "notification" => $this->fcmNotification($notifiable),
@@ -41,9 +43,14 @@ trait FcmSendible
                         ],
                     ],
                 ],
-                "data" => $this->fcmData($notifiable),
             ],
         ];
+
+        if ($data != null && (is_array($data) && count($data) > 0)) {
+            $message['message']['data'] = $data;
+        }
+
+        return $message;
     }
 
     public function fcmNotification($notifiable)
