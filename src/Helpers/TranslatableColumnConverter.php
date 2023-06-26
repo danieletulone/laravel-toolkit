@@ -20,9 +20,9 @@ class TranslatableColumnConverter
             ->get()
             ->each(function ($model) use ($column) {
                 $model->setRawAttributes([
-                    "$column" => [
-                        'en' => $model->{$column}
-                    ],
+                    "$column" => json_encode([
+                        'en' => $model->getRawOriginal($column)
+                    ]),
                 ]);
 
                 $model->save();
