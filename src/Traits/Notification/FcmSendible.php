@@ -3,7 +3,7 @@
 namespace Danieletulone\LaravelToolkit\Traits\Notification;
 
 use Danieletulone\LaravelToolkit\Notifications\Channels\FcmChannel;
-use DanieleTulone\LaravelToolkit\Traits\Notification\HasTranslations;
+use Danieletulone\LaravelToolkit\Traits\Notification\HasTranslations;
 
 trait FcmSendible
 {
